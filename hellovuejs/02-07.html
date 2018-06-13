@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="gold">
+        <input type="text" name="" id="" v-model="money">
+        <span v-if="money >= 5000">GOLD</span>
+        <span v-else-if="money >= 3000">SILVER</span>
+        <span v-else-if="money >= 1000">BRONZE</span>
+        <span v-else>BASIC</span>
+    </div>
+</body>
+<script>
+    var gold_app = new Vue({
+        el: "#gold",
+        data: {
+            money: 0
+        }
+    })
+</script>
+
+</html>
