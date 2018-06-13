@@ -17,19 +17,38 @@
 </head>
 
 <body>
-    <div id="gold" class="m-2">
-        <b-form-input type="text" name="" id="" v-model="money"></b-form-input>
-        <span v-if="money >= 5000">GOLD</span>
-        <span v-else-if="money >= 3000">SILVER</span>
-        <span v-else-if="money >= 1000">BRONZE</span>
-        <span v-else>BASIC</span>
+    <div id="exfor">
+        <div v-for="userInfo in userInfos">
+            <span>{{userInfo.name}}</span>
+            <span>{{userInfo.age}}</span>
+
+        </div>
+
     </div>
 </body>
 <script>
-    var gold_app = new Vue({
-        el: "#gold",
+    var exfor_app = new Vue({
+        el: "#exfor",
         data: {
-            money: 0
+            userInfos: [{
+                    name: "배진영",
+                    age: "20"
+                }, {
+                    name: "윤은식",
+                    age: "20"
+                }, {
+                    name: "이수현",
+                    age: "20"
+                }, {
+                    name: "홍남수",
+                    age: "20"
+                }, {
+                    name: "오용훈",
+                    age: "19"
+                }
+
+            ]
+
         }
     })
 </script>

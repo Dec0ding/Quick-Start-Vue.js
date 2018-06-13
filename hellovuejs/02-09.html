@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Add this to <head> -->
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Add this after vue.js -->
+    <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+</head>
+
+<body>
+    <select id="example">
+        <option selected id="regions" disabled="disabled">지역을 선택하세요.</option>
+        <option v-for="(val,key) in regions" v-bind:value="key">{{val}}</option>
+    </select>
+</body>
+<script>
+    var regions = {
+        "A": "Asia",
+        "B": "America",
+        "C": "Europe",
+        "D": "Africa",
+        "E": "Oceania"
+    };
+
+    var list = new Vue({
+        el: "#example",
+        data: {
+            regions: regions
+        }
+    });
+</script>
+
+</html>
