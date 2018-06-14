@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Add this to <head> -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <!-- Add this after vue.js -->
+    <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+    <style>
+        /** import 영역 **/
+        
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        body * {
+            /** 폰트 영문 이름 지정 **/
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+        
+        .set1 {
+            background-color: aqua;
+            color: purple;
+        }
+        
+        .set2 {
+            text-align: center;
+            width: 120px;
+        }
+        
+        .set3 {
+            border: sandybrown dashed 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="example">
+        <b-button type="button" :class="{set:s1,set2:s2,set3:s3}">버튼1</b-button>
+        <p>
+            <b-form-checkbox v-model="s1" value="true">set1 디자인</b-form-checkbox>
+            <b-form-checkbox v-model="s2" value="true">set2 디자인</b-form-checkbox>
+            <b-form-checkbox v-model="s3" value="true">set3 디자인</b-form-checkbox>
+        </p>
+    </div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: "#example",
+        data: {
+            s1: false,
+            s2: false,
+            s3: false
+        }
+    })
+</script>
+
+</html>
