@@ -17,10 +17,13 @@
 </head>
 
 <body>
-    <select id="example">
-        <option selected id="regions" disabled="disabled">지역을 선택하세요.</option>
-        <option v-for="(val,key) in regions" v-bind:value="key">{{val}}</option>
-    </select>
+    <div class="m-3">
+        <b-form-select id="example">
+            <option selected id="regions" disabled="disabled">지역을 선택하세요.</option>
+            <option v-for="(val,key) in regions" v-bind:value="key">{{val}}</option>
+        </b-form-select>
+    </div>
+
 </body>
 <script>
     var regions = {

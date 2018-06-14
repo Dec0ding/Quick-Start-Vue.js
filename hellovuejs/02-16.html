@@ -17,12 +17,12 @@
 </head>
 
 <body>
-    <div id="exfor">
-        <div v-for="(val,index) in userInfos">
-            <hr v-if="val.age == 19">
+
+    <div id="exfor" class="m-3">
+        <b-form-input type="text" v-model="keyword"></b-form-input>
+        <div v-for="(val,index) in filtered">
             <span>{{val.name}}</span>
             <span>{{val.age}}</span>
-            <hr v-if="index == 4">
         </div>
 
     </div>
@@ -48,8 +48,18 @@
                     age: "19"
                 }
 
-            ]
-
+            ],
+            keyword: ""
+        },
+        computed: {
+            filtered: function() {
+                var keyword = this.keyword;
+                return this.userInfos.filter(function(item, index) {
+                    if (item.name.indexOf(keyword) > -1) {
+                        return 1;
+                    }
+                })
+            }
         }
     })
 </script>

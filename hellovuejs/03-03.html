@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Add this to <head> -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Add this after vue.js -->
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+</head>
+
+<body>
+    <div id="example">
+        {{gold}}
+    </div>
+</body>
+<script>
+    var money_app = new Vue({
+        el: "#example",
+        data: {
+            money: 0
+        },
+        computed: {
+            gold: {
+                get: function() {
+                    console.log("값을 가져옵니다.");
+                    return this.money;
+
+                },
+                set: function(gold) {
+                    console.log("값이 세팅됩니다.");
+                    this.money = gold;
+                }
+            }
+
+        }
+    })
+</script>
+
+</html>

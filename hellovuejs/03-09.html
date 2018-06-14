@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Add this to <head> -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Add this after vue.js -->
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="example" class="m-3">
+        <p>
+            이름 :
+            <b-form-input type="text" v-model="name" placeholder="두자 이상 입력하세요."> </b-form-input>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>주소</th>
+                </tr>
+            </thead>
+            <tbody id="contacts">
+                <tr v-for="contact in contactlist">
+                    <td>{{contact.no}}</td>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.tel}}</td>
+                    <td>{{contact.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div v-show="isProcessing === true">조회중</div>
+    </div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: "#example",
+        data: {
+            name: "",
+            isProcessing: false,
+            contactlist: []
+        },
+        watch: {
+            name: function(val) {
+                if (val.length >= 2) {
+                    this.fetchContacts();
+                } else {
+                    this.contactlist = [];
+                }
+            }
+        },
+        methods: {
+            fetchContacts: _.debounce(function() {
+                this.contactlist = [];
+                this.isProcessing = true;
+                var url = "http://sample.bmaster.kro.kr/contacts_long/search/" + this.name;
+                var vm = this;
+                fetch(url)
+                    .then(function(response) {
+                        return response.json()
+                    }).then(function(json) {
+                        vm.contactlist = json;
+                        vm.isProcessing = false;
+                    }).catch(function(ex) {
+                        console.log("parsing failed", ex);
+                        vm.contactlist = [];
+                        vm.isProcessing = false;
+                    })
+
+            }, 300)
+        }
+    })
+</script>
+
+</html>
