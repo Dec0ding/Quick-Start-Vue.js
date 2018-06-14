@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Add this to <head> -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Add this after vue.js -->
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+
+    <style>
+        /** import 영역 **/
+        
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        body * {
+            /** 폰트 영문 이름 지정 **/
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+        
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        #example {
+            height: 98vh;
+            min-height: 100%;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="example" @contextmenu.prevent="ctxstop" @mouseup.left="leftMouse" @mouseup.right="rightMouse">
+        <div>
+            Left Click : 왼쪽으로 <br> Right Click : 오른쪽으로
+        </div>
+        <img src="./images/foot.jpg" v-bind:style="{position:'absolute', left:pos.left + 'px', top:pos.top + 'px'}" />
+    </div>
+
+
+</body>
+<script>
+    var vm = new Vue({
+        el: "#example",
+        data: {
+            pos: {
+                left: 100,
+                top: 100
+            }
+        },
+        methods: {
+            ctxstop: function(e) {},
+            leftMouse: function(e) {
+                if (this.pos.left > 30) {
+                    this.pos.left -= 30;
+                }
+                console.log("Move Left!!");
+            },
+            rightMouse: function(e) {
+                this.pos.left += 30;
+                console.log("Move Right!!");
+            }
+        }
+    })
+</script>
+
+</html>

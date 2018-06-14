@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Add this to <head> -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Add this after vue.js -->
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+
+    <style>
+        /** import 영역 **/
+        
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        body * {
+            /** 폰트 영문 이름 지정 **/
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="example" class="m-5">
+        <b-form-input type="text" v-model="amt"></b-form-input>
+        <b-button variant="primary" class="m-1" type="button" @click="deposit()">예금</b-button>
+        <b-button variant="primary" class="m-1" type="button" @click="withdraw()">출금</b-button>
+        <div>저축되어있는 돈 {{cash}}</div>
+    </div>
+</body>
+<script>
+    var example_app = new Vue({
+        el: "#example",
+        data: {
+            amt: 0,
+            cash: 0
+        },
+        methods: {
+            deposit: function() {
+                var amount = Number(this.amt);
+                if (isNaN(amount)) {
+                    alert("숫자를 입력해주세요.");
+                } else if (amount < 0) {
+                    alert("0원이상만 예금할 수 있습니다.");
+                } else {
+                    this.cash += amount;
+                }
+
+            },
+            withdraw: function() {
+                var amount = Number(this.amt);
+                if (isNaN(amount)) {
+                    alert("숫자를 입력해주세요.");
+                } else if (amount <= this.cash) {
+                    this.cash -= amount;
+                } else {
+                    alert("예금된 금액 보다 큰값을 입력해주십시오.");
+                }
+            }
+        }
+    })
+</script>
+
+</html>

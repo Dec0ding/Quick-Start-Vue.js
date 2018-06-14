@@ -19,11 +19,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
 
-
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        /** import 영역 **/
+        
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        body * {
+            /** 폰트 영문 이름 지정 **/
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+    </style>
 </head>
 
+|"
+
 <body>
-    <div id="example" class="m-3">
+    <div id="example" class="m-3" v-cloak>
         <p>
             이름 :
             <b-form-input type="text" v-model="name" placeholder="두자 이상 입력하세요."> </b-form-input>
