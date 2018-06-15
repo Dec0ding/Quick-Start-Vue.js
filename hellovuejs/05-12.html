@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /** import 영역 **/
+        
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        body * {
+            /** 폰트 영문 이름 지정 **/
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="todo-list-app">
+        <div id="header">
+            <div>Todo List App</div>
+
+            <div class="input-group">
+                <input type="text" v-model="todoInput" v-on:keyup.enter="addTodo" placeholder="입력 후 엔터!">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" @click="addTodo">추가</button>
+                </div>
+            </div>
+        </div>
+        <article>
+            <ul>
+                <li v-for="(val,index) in todoList">
+                    <span>{{val.todo}}</span>
+                    <span class="delete" @click="deleteTodo(index)">&#x00d7</span>
+                </li>
+            </ul>
+        </article>
+    </div>
+
+</body>
+<script>
+    var todoList_app = new Vue({
+        el: "#todo-list-app",
+        data: {
+            todoList: [],
+            todoInput: ""
+        },
+        methods: {
+            checked: function() {
+
+            },
+            addTodo: function() {
+                if (this.todoInput === "")
+                    return;
+                var todo_ = this.todoInput;
+                this.todoList.push({
+                    todo: todo_,
+                    done: false
+                })
+                this.todoInput = "";
+            },
+            deleteTodo: function(index) {
+                this.todoList.splice(index, 1);
+            },
+            doneToggle: function() {
+
+            }
+        }
+    })
+</script>
+
+</html>
